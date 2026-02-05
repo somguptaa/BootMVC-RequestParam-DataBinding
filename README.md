@@ -1,12 +1,12 @@
 # My Learning Journey: Spring Boot MVC @RequestParam
 
-## 📖 About This Project
+## About This Project
 
 This is my personal learning project where I'm exploring how Spring Boot MVC handles request parameters. I'm documenting everything I learn here so I can refer back to it later and track my progress.
 
 ---
 
-## 🎯 What I'm Learning
+## What I'm Learning
 
 I'm learning how to:
 - Capture data from URLs (like `?name=John&age=25`) in my Spring Boot application
@@ -16,17 +16,17 @@ I'm learning how to:
 
 ---
 
-## 🛠️ My Setup
+## My Setup
 
 **IDE:** IntelliJ IDEA / Eclipse / VS Code (choose yours)  
-**Java Version:** Java 17  
+**Java Version:** Java 21  
 **Spring Boot Version:** 3.x  
 **Build Tool:** Maven  
 **Server Port:** 4045  
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 ```
 BootMVC-RequestParam-DataBinding/
 ├── src/
@@ -47,7 +47,7 @@ BootMVC-RequestParam-DataBinding/
 
 ---
 
-## 🚀 How to Run My Project
+## How to Run My Project
 
 ### Step 1: Open in IDE
 1. Open IntelliJ IDEA / Eclipse
@@ -69,7 +69,7 @@ You should see the result page with the data displayed!
 
 ---
 
-## 📚 What I Learned - Detailed Notes
+## What I Learned - Detailed Notes
 
 ### Lesson 1: Basic Parameter Binding
 
@@ -78,7 +78,7 @@ When I type `?sno=101&sname=John` in the URL, Spring can automatically capture t
 
 **My Code:**
 ```java
-@GetMapping("/data-explicit")
+@GetMapping("/data")
 public String processData(
     @RequestParam("sno") int no,      // Takes value from ?sno=...
     @RequestParam("sname") String name // Takes value from ?sname=...
@@ -111,7 +111,7 @@ If my method parameter name matches the URL parameter name exactly, I don't need
 
 **My Code:**
 ```java
-@GetMapping("/data-implicit")
+@GetMapping("/data")
 public String processData(
     @RequestParam int sno,      // Automatically maps to ?sno=...
     @RequestParam String sname  // Automatically maps to ?sname=...
@@ -156,7 +156,7 @@ public String processData(@RequestParam String sname) {
 
 **My Solution:**
 ```java
-@GetMapping("/data-optional")
+@GetMapping("/data")
 public String processData(
     @RequestParam Integer sno,                          // Required - must provide
     @RequestParam(required = false) String sname        // Optional - can skip
@@ -195,7 +195,7 @@ Instead of getting `null` when a parameter is missing, I can provide a default v
 
 **My Code:**
 ```java
-@GetMapping("/data-default")
+@GetMapping("/data")
 public String processData(
     @RequestParam(defaultValue = "0") int sno,
     @RequestParam(defaultValue = "Guest") String sname
@@ -363,7 +363,7 @@ for (int i = 0; i < cityArray.length; i++) {
 
 ---
 
-## 🧪 My Testing Checklist
+## My Testing Checklist
 
 I test each endpoint with different scenarios:
 
@@ -400,7 +400,7 @@ I test each endpoint with different scenarios:
 
 ---
 
-## ❌ Mistakes I Made (So You Don't Have To!)
+## Mistakes I Made (So You Don't Have To!)
 
 ### Mistake 1: Wrong Parameter Names
 ```java
@@ -426,9 +426,7 @@ I test each endpoint with different scenarios:
 ### Mistake 3: Forgetting JSTL Taglib
 ```jsp
 <!-- Forgot this at the top of JSP:
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/form" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/*" prefix="*" %>
 ```
 
 ### Mistake 4: Case Sensitivity
@@ -442,7 +440,7 @@ I test each endpoint with different scenarios:
 
 ---
 
-## 📊 Quick Reference Table (My Cheat Sheet)
+## Quick Reference Table (My Cheat Sheet)
 
 | What I Want | Code | Example URL |
 |-------------|------|-------------|
@@ -455,7 +453,7 @@ I test each endpoint with different scenarios:
 
 ---
 
-## 🎓 What I Understand Now
+## What I Understand Now
 
 ### Before Learning:
 - ❌ Didn't know how to get data from URLs
@@ -473,79 +471,49 @@ I test each endpoint with different scenarios:
 
 ---
 
-## 🚀 Next Steps in My Learning
-
-Things I want to explore next:
-- [ ] Form data binding with `@ModelAttribute`
-- [ ] Path variables with `@PathVariable`
-- [ ] Request body with `@RequestBody`
-- [ ] File uploads
-- [ ] Custom validators
-- [ ] Exception handling
-
----
-
-## 📝 My Notes Section
+## My Notes Section
 
 ### Questions I Had:
-1. **Q:** What's the difference between `@RequestParam` and `@PathVariable`?  
-   **A:** (Will learn this next)
-
-2. **Q:** Can I have both required and optional parameters in same method?  
+1. **Q:** Can I have both required and optional parameters in same method?  
    **A:** Yes! Just use `required=false` on the optional ones.
 
-3. **Q:** What if I want to validate the parameter values?  
-   **A:** (Need to learn about validators)
+2. **Q:** What's the difference between `@RequestParam` and `@PathVariable`?  
+   **A:** (Will learn this next)
 
-### Useful Commands:
-```bash
-# Build project
-mvn clean install
+3. **Q:** What's the difference between `@RequestParam` and `@PathVariable`?
 
-# Run project
-mvn spring-boot:run
-
-# Check logs
-tail -f logs/application.log
-```
+**A:** `@RequestParam` reads values from the query string (e.g., `?id=10`), while @PathVariable reads values from the URL path itself (e.g., `/users/10`).
 
 ---
 
-## 📚 Resources That Helped Me
+## Resources That Helped Me
 
 1. **Official Documentation:**
    - [Spring MVC RequestParam](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestParam.html)
    - [Spring Boot Reference](https://docs.spring.io/spring-boot/docs/current/reference/html/)
 
-2. **Tutorials I Found Helpful:**
-   - Baeldung Spring MVC tutorials
-   - Stack Overflow for specific errors
-   - YouTube: Spring Boot tutorials
-
-3. **My Code Comments:**
+2. **My Code Comments:**
    - I added detailed comments in `StudentOperationController.java`
    - Each example has its own section with explanations
 
 ---
 
-## 🏆 My Progress Tracker
+## My Progress Tracker
 
 - [x] Set up Spring Boot project
 - [x] Learned basic `@RequestParam` binding
 - [x] Understood required vs optional parameters
 - [x] Learned about default values
-- [x] Mastered multiple values handling
 - [x] Created working JSP page
 - [x] Tested all scenarios
-- [ ] Learn form data binding
-- [ ] Learn path variables
-- [ ] Learn REST APIs
+- [x] Learn form data binding
+- [x] Learn path variables
 
 ---
 
-## 💭 Personal Reflections
+## Personal Reflections
 
-**Date Started:** [Your Date]  
+**Date Started:** [Som Gupta]  
 **Current Status:** Understanding @RequestParam fundamentals  
 
 **What I Found Easy:**
@@ -557,24 +525,16 @@ tail -f logs/application.log
 - Remembering to use wrapper types (Integer vs int)
 - JSP JSTL syntax took some practice
 
-**Aha Moments:**
+**Key Takeaways:**
 - Realizing `defaultValue` automatically makes parameter optional
 - Understanding why Set removes duplicates
 - Learning that Spring automatically converts types
 
 ---
 
-## 📧 Contact
+## Contact
 
-**My Learning Repository:** [Your GitHub Link]  
+**My Learning Repository:** [https://github.com/somguptaa]  
 **Questions/Issues:** Feel free to create an issue  
 **Learning Together:** Open to discussions and peer learning!
 
----
-
-**Last Updated:** [Current Date]  
-**Version:** 1.0 - Basic @RequestParam Learning Complete
-
----
-
-*This is a living document - I'll keep updating it as I learn more!* 🚀
