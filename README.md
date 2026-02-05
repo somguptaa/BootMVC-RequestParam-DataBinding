@@ -90,7 +90,7 @@ public String processData(
 
 **Test URL:**
 ```
-http://localhost:4045/data-explicit?sno=101&sname=John
+http://localhost:4045/data?sno=101&sname=John
 ```
 
 **What Happens:**
