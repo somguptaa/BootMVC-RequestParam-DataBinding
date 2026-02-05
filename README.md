@@ -123,12 +123,12 @@ public String processData(
 
 **Test URL:**
 ```
-http://localhost:4045/data-implicit?sno=101&sname=John
+http://localhost:4045/data?sno=101&sname=John
 ```
 
 **When I Tried This Wrong:**
 ```
-URL: http://localhost:4045/data-implicit?sno=101&name=John
+URL: http://localhost:4045/data?sno=101&name=John
 Error: 400 Bad Request
 Reason: Spring looked for "sname" but found "name"
 ```
@@ -246,7 +246,7 @@ When I submit this form, URL becomes:
 
 **My Code - Three Ways to Capture:**
 ```java
-@GetMapping("/data-multi")
+@GetMapping("/data")
 public String processData(
     @RequestParam("city") String[] citiesArray,   // Option 1: Array
     @RequestParam("city") List<String> citiesList, // Option 2: List
@@ -261,7 +261,7 @@ public String processData(
 
 **Test URL:**
 ```
-http://localhost:4045/data-multi?sno=101&sname=John&city=Hyd&city=Pune&city=Delhi
+http://localhost:4045/data?sno=101&sname=John&city=Hyd&city=Pune&city=Delhi
 ```
 
 **Output:**
@@ -370,14 +370,14 @@ I test each endpoint with different scenarios:
 ### Test 1: Basic Binding
 ```
 ✅ http://localhost:4045/data?sno=101&sname=John
-❌ http://localhost:4045/data-implicit?sno=101&name=John  (should fail)
+❌ http://localhost:4045/data?sno=101&name=John  (should fail)
 ```
 
 ### Test 2: Optional Parameters
 ```
 ✅ http://localhost:4045/data?sno=101&sname=John
 ✅ http://localhost:4045/data?sno=101  (sname missing - should work)
-❌ http://localhost:4045/data-?sname=John  (sno missing - should fail)
+❌ http://localhost:4045/data?sname=John  (sno missing - should fail)
 ```
 
 ### Test 3: Default Values
@@ -389,7 +389,7 @@ I test each endpoint with different scenarios:
 
 ### Test 4: Multiple Values
 ```
-✅ http://localhost:4045/datasno=101&sname=John&city=Hyd&city=Pune&city=Delhi
+✅ http://localhost:4045/data?sno=101&sname=John&city=Hyd&city=Pune&city=Delhi
 ✅ http://localhost:4045/data?sno=101&sname=John&city=Hyd  (single value)
 ```
 
